@@ -1,0 +1,83 @@
+/* Обнуление базовых настроек */
+* {
+    margin: 0;
+    padding: 0;
+    box-string: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center; /* Центрирует page-wrapper по горизонтали */
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Контейнер, создающий пустые поля по бокам и сверху */
+.page-wrapper {
+    width: 100%;
+    max-width: 1400px; /* Ограничение, чтобы на сверхшироких мониторах не было слишком широко */
+    padding: 50px 5%;  /* 50px отступ сверху, 5% отступы по бокам */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Верхняя панель (растянутая на всю ширину wrapper) */
+.header-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 100px; /* Большой отступ от шапки до кнопок */
+}
+
+.header-main {
+    flex-grow: 1;
+    border: 2px solid black;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.header-square {
+    width: 70px;
+    border: 2px solid black;
+    border-left: none; /* Убираем двойную линию на стыке */
+}
+
+/* Контентная часть */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Расстояние между кнопками */
+    width: 100%;
+}
+
+/* Кнопки-блоки */
+.button-block {
+    width: 450px; /* Ширина блоков, как на фото */
+    border: 2px solid black;
+    padding: 40px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button-block:hover {
+    background-color: #f0f0f0;
+}
+/* Контентная часть */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* ИЗМЕНИТЕ ЭТО ЗНАЧЕНИЕ */
+    gap: 150px; /* Поставьте 150px или 200px, чтобы получить большое расстояние */
+
+    width: 100%;
+}

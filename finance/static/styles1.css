@@ -1,0 +1,67 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 40px 50px;
+    box-sizing: border-box;
+}
+.header-center {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.header-center h1 {
+    font-size: 28px;
+    font-weight: normal;
+    margin: 0;
+}
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.form-group label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #000;
+}
+.form-group input {
+    width: 350px;
+    padding: 12px;
+    border: 1px solid #000;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.submit-btn {
+    padding: 10px 40px;
+    font-size: 20px;
+    font-weight: normal;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.submit-btn:hover {
+    background-color: #f0f0f0;
+}

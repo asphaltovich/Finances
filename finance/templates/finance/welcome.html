@@ -1,0 +1,27 @@
+{% load static %}  <!-- ОБЯЗАТЕЛЬНО ДОБАВИТЬ -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>МойУчётФинансов</title>
+    <!-- УБРАЛИ 'finance/' из пути -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header-box">
+            <h1>МойУчётФинансов</h1>
+        </header>
+        <main class="content-box">
+            <p class="welcome-text">
+                Уважаемый пользователь, прежде чем начать пользоваться сайтом "МойУчётФинансов",
+                Вам необходимо войти или зарегистрироваться
+            </p>
+            <div class="button-group">
+                <a href="{% url 'register' %}" class="btn btn-register">Зарегистрироваться</a>
+                <a href="{% url 'login' %}" class="btn btn-login">Войти</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

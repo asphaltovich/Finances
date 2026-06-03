@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    min-height: 100vh;
+    padding: 40px;
+    display: block;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ЗАГОЛОВОК: Центр экрана */
+.title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* ФОРМА: Прижата к левому краю, ширина ограничена */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 22px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input-group input {
+    border: 1px solid #000;
+    padding: 12px;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+}
+
+/* ОБЕРТКА ДЛЯ КНОПКИ: Сделаем её на всю ширину, чтобы центровать содержимое */
+.button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Это поставит кнопку ровно по центру экрана */
+    margin-top: 10px;
+}
+
+.submit-btn {
+    padding: 10px 35px;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #f0f0f0;
+}

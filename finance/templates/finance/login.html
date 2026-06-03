@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles2.css' %}">
+    <title>Форма входа</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="title">Вход</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="login">Логин</label>
+                <input type="text" id="login" name="login">
+            </div>
+            <div class="input-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password">
+            </div>
+        </form>
+        <div class="button-wrapper">
+            <button type="submit" form="login" class="submit-btn" formaction="/your-url/">Далее</button>
+        </div>
+    </div>
+
+</body>
+</html>
