@@ -9,10 +9,13 @@ def login_page(request):
     return render(request, 'finance/login.html')
 def main_page(request):
     return render(request, 'finance/main.html')
+def section_finances(request):
+    return render(request, 'finance/section_finances.html')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome_page, name='welcome'),
     path('register/', register_page, name='register'),
     path('login/', login_page, name='login'),
     path('main/', main_page, name='main'),
+    path('section_finances/', section_finances, name='section_finances'),
 ]
