@@ -11,6 +11,8 @@ def main_page(request):
     return render(request, 'finance/main.html')
 def section_finances(request):
     return render(request, 'finance/section_finances.html')
+def profile(request):
+    return render(request, 'finance/profile.html')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome_page, name='welcome'),
@@ -18,4 +20,5 @@ urlpatterns = [
     path('login/', login_page, name='login'),
     path('main/', main_page, name='main'),
     path('section_finances/', section_finances, name='section_finances'),
+    path('profile/', profile, name='profile'),
 ]
