@@ -9,7 +9,6 @@ body {
     align-items: center;
     overflow: hidden;
 }
-
 .container {
     border: 1px solid black;
     padding: 20px;
@@ -20,7 +19,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 .header {
     font-size: 24px;
     margin-bottom: 20px;
@@ -29,7 +27,6 @@ body {
     text-align: center;
     flex-shrink: 0;
 }
-
 .content {
     display: flex;
     justify-content: space-between;
@@ -37,7 +34,6 @@ body {
     flex-grow: 1;
     margin-bottom: 20px;
 }
-
 .left-panel {
     display: flex;
     flex-direction: column;
@@ -48,7 +44,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
 }
-
 .left-panel button {
     background-color: white;
     border: 1px solid black;
@@ -60,11 +55,9 @@ body {
     transition: background-color 0.2s;
     box-sizing: border-box;
 }
-
 .left-panel button:hover {
     background-color: #eeeeee;
 }
-
 .right-panel {
     border: 2px solid black;
     padding: 20px;
@@ -82,26 +75,23 @@ body {
 .right-panel p {
     margin: 0;
 }
-
 .footer {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     padding: 10px 0;
 }
-
 .footer button {
     background-color: white;
-    border: 2px solid black; /* Увеличиваем ширину рамки */
-    padding: 15px 30px; /* Увеличиваем внутренние отступы */
+    border: 2px solid black;
+    padding: 15px 30px;
     cursor: pointer;
-    font-size: 20px; /* Увеличиваем размер текста */
+    font-size: 20px;
     font-weight: bold;
-    width: 300px; /* Увеличиваем ширину кнопки */
+    width: 300px;
     transition: background-color 0.2s;
     box-sizing: border-box;
 }
-
 .footer button:hover {
-    background-color: #eeeeee; /* Эффект при наведении */
+    background-color: #eeeeee;
 }
