@@ -92,16 +92,16 @@ body {
 
 .footer button {
     background-color: white;
-    border: 1px solid black;
-    padding: 10px;
+    border: 2px solid black; /* Увеличиваем ширину рамки */
+    padding: 15px 30px; /* Увеличиваем внутренние отступы */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px; /* Увеличиваем размер текста */
     font-weight: bold;
-    width: 200px;
+    width: 300px; /* Увеличиваем ширину кнопки */
     transition: background-color 0.2s;
     box-sizing: border-box;
 }
 
 .footer button:hover {
-    background-color: #eeeeee;
+    background-color: #eeeeee; /* Эффект при наведении */
 }
