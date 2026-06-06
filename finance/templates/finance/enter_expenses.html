@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Учёт Финансов</title>
+    <link rel="stylesheet" href="{% static 'styles7.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-box">МойУчётФинансов</div>
+            <div class="empty-box"></div>
+        </header>
+        <div class="form-group">
+            <label>Введите тип кошелька</label>
+            <input type="text" class="input-field">
+        </div>
+        <div class="form-group">
+            <label>Выберите категорию расходов</label>
+            <div class="custom-select">
+                <span class="placeholder">Транспорт</span>
+                <div class="arrow">&#9660;</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Введите &nbsp;&nbsp;ваши расходы</label>
+            <input type="text" class="input-field">
+        </div>
+        <div class="buttons-container">
+            <button class="btn btn-cancel">Отмена</button>
+            <button class="btn btn-save">Сохранить</button>
+            <button class="btn btn-finance">Финансы</button>
+        </div>
+    </div>
+
+</body>
+</html>
