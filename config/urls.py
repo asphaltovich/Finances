@@ -15,6 +15,8 @@ def profile(request):
     return render(request, 'finance/profile.html')
 def goals(request):
     return render(request, 'finance/my_goals.html')
+def enter_exp(request):
+    return render(request, 'finance/enter_expenses.html')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome_page, name='welcome'),
@@ -24,4 +26,5 @@ urlpatterns = [
     path('section_finances/', section_finances, name='section_finances'),
     path('profile/', profile, name='profile'),
     path('my_goals/', goals, name='goals'),
+    path('enter_expenses/', enter_exp, name='enter_expenses'),
 ]
