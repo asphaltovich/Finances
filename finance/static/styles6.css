@@ -69,7 +69,7 @@ body {
     font-weight: normal;
     font-family: inherit;
     cursor: pointer;
-    text-decoration: non;
+    text-decoration: none;
 }
 .main-btn:hover {
     background-color: #f0f0f0;
