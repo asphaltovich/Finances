@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Учёт Финансов</title>
+    <link rel="stylesheet" href="{% static 'styles8.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header-box">
+            <h1>МойУчётФинансов</h1>
+        </header>
+        <main class="content-box">
+            <div class="column left-column">
+                <div class="column-title">Расходы</div>
+                <div class="column-space"></div>
+                <div class="column-total">Итого:</div>
+            </div>
+            <div class="column right-column">
+                <div class="column-title">Доходы</div>
+                <div class="column-space"></div>
+                <div class="column-total">Итого:</div>
+            </div>
+        </main>
+        <div class="button-box">
+            <a href="{% url 'section_finances' %}" class="btn-finance">Финансы</a>
+        </div>
+    </div>
+</body>
+</html>
