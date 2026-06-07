@@ -37,7 +37,19 @@
             <div class="button-container">
                 <button type="submit" class="submit-btn">Далее</button>
             </div>
-        </form>
+        <form method="post" class="registration-form">
+            {% csrf_token %}
+
+            <!-- ДОБАВИТЬ ЭТОТ БЛОК ДЛЯ ОШИБОК -->
+            {% if error %}
+                <div style="color: red; margin-bottom: 15px; text-align: center;">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <!-- КОНЕЦ БЛОКА ОШИБОК -->
+
+            <div class="form-group">
+
     </div>
 </body>
 </html>
