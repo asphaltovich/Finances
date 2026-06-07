@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+}
+.header-box {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: -1px;
+}
+.header-box h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+.content-box {
+    display: flex;
+    flex: 1;
+    border: 1px solid #000;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.left-column {
+    border-right: 1px solid #000;
+}
+.column-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+}
+.column-space {
+    flex: 1;
+}
+.column-total {
+    border-top: 1px solid #000;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.button-box {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.btn-finance {
+    display: inline-block;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.2s;
+}
+.btn-finance:hover {
+    background-color: #f0f0f0;
+}
