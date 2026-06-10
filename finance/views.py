@@ -2,7 +2,7 @@ from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
-from .models import Client, Wallet, Expense, Income
+from .models import Client, Wallet, Expense, Income, Goal
 
 
 def welcome_page(request):
@@ -114,3 +114,19 @@ def enter_inc(request):
         )
         return redirect('enter_incomes')
     return render(request, 'finance/enter_incomes.html')
+def add_goal(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    if request.method == 'POST':
+        name_val = request.POST.get('name')
+        desc_val = request.POST.get('description')
+        amount_val = request.POST.get('amount')
+        client = Client.objects.get(id=request.session['client_id'])
+        Goal.objects.create(
+            client=client,
+            name=name_val,
+            description=desc_val,
+            amount=amount_val
+        )
+        return redirect('goals')
+    return render(request, 'finance/add_goal.html')
