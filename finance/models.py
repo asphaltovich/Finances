@@ -51,9 +51,17 @@ class Income(models.Model):
         related_name='incomes',
         verbose_name='Клиент'
     )
+    wallet = models.ForeignKey(
+        Wallet,
+        on_delete=models.CASCADE,
+        related_name='incomes',
+        verbose_name='Кошелёк',
+        null=True, blank=True
+    )
+    category = models.CharField(max_length=100, verbose_name='Категория доходов', default='Без категории')
     amount = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Сумма доходов')
     class Meta:
         verbose_name = 'Доход'
         verbose_name_plural = 'Доходы'
     def __str__(self):
-        return f"Доход: {self.amount} руб. ({self.client.username})"
+        return f"Доход: {self.amount} руб. ({self.category}) - {self.client.username}"
