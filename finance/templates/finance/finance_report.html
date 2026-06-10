@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Учёт Финансов</title>
+    <title>Мой Учёт Финансов - Отчёт</title>
     <link rel="stylesheet" href="{% static 'styles8.css' %}">
 </head>
 <body>
@@ -13,15 +13,32 @@
             <h1>МойУчётФинансов</h1>
         </header>
         <main class="content-box">
+            <!-- ЛЕВАЯ КОЛОНКА: РАСХОДЫ -->
             <div class="column left-column">
                 <div class="column-title">Расходы</div>
-                <div class="column-space"></div>
-                <div class="column-total">Итого:</div>
+                <div class="column-space">
+                    {% for exp in expenses %}
+                        <div class="data-row">
+                            <span class="data-category">{{ exp.category }}</span>
+                            <span class="data-amount">{{ exp.amount }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="column-total">Итого: {{ total_expense }}</div>
             </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: ДОХОДЫ -->
             <div class="column right-column">
                 <div class="column-title">Доходы</div>
-                <div class="column-space"></div>
-                <div class="column-total">Итого:</div>
+                <div class="column-space">
+                    {% for inc in incomes %}
+                        <div class="data-row">
+                            <span class="data-category">{{ inc.category }}</span>
+                            <span class="data-amount">{{ inc.amount }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="column-total">Итого: {{ total_income }}</div>
             </div>
         </main>
         <div class="button-box">
