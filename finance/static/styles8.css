@@ -70,3 +70,15 @@ body, html {
 .btn-finance:hover {
     background-color: #f0f0f0;
 }
+.data-row {
+    display: flex;
+    justify-content: space-between; /* Расталкивает категорию и сумму по краям */
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+.data-category {
+    color: #333;
+}
+.data-amount {
+    font-weight: bold;
+}
