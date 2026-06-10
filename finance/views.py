@@ -2,7 +2,7 @@ from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
-from .models import Client, Wallet, Expense
+from .models import Client, Wallet, Expense, Income
 
 
 def welcome_page(request):
@@ -94,3 +94,23 @@ def finance_report(request):
     if 'client_id' not in request.session:
         return redirect('login')
     return render(request, 'finance/finance_report.html')
+def enter_inc(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    if request.method == 'POST':
+        wallet_name = request.POST.get('wallet_type')
+        category_name = request.POST.get('category')
+        amount_val = request.POST.get('amount')
+        client = Client.objects.get(id=request.session['client_id'])
+        wallet, created = Wallet.objects.get_or_create(
+            name=wallet_name,
+            client=client
+        )
+        Income.objects.create(
+            client=client,
+            wallet=wallet,
+            category=category_name,
+            amount=amount_val
+        )
+        return redirect('enter_incomes')
+    return render(request, 'finance/enter_incomes.html')
