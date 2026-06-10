@@ -2,7 +2,9 @@ from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
-from .models import Client
+from .models import Client, Wallet, Expense
+
+
 def welcome_page(request):
     return render(request, 'finance/welcome.html')
 def register_page(request):
@@ -49,37 +51,45 @@ def login_page(request):
 
     return render(request, 'finance/login.html')
 def logout_user(request):
-    # Очищаем сессию
     request.session.flush()
     return redirect('welcome')
 def main_page(request):
     if 'client_id' not in request.session:
         return redirect('login')
     return render(request, 'finance/main.html')
-
 def section_finances(request):
     if 'client_id' not in request.session:
         return redirect('login')
     return render(request, 'finance/section_finances.html')
-
 def profile(request):
     if 'client_id' not in request.session:
         return redirect('login')
-
-    # Можно передать данные клиента в шаблон профиля
     client = Client.objects.get(id=request.session['client_id'])
     return render(request, 'finance/profile.html', {'client': client})
-
 def goals(request):
     if 'client_id' not in request.session:
         return redirect('login')
     return render(request, 'finance/my_goals.html')
-
 def enter_exp(request):
     if 'client_id' not in request.session:
         return redirect('login')
+    if request.method == 'POST':
+        wallet_name = request.POST.get('wallet_type')
+        category_name = request.POST.get('category')
+        amount_val = request.POST.get('amount')
+        client = Client.objects.get(id=request.session['client_id'])
+        wallet, created = Wallet.objects.get_or_create(
+            name=wallet_name,
+            client=client
+        )
+        Expense.objects.create(
+            client=client,
+            wallet=wallet,
+            category=category_name,
+            amount=amount_val
+        )
+        return redirect('enter_exp')
     return render(request, 'finance/enter_expenses.html')
-
 def finance_report(request):
     if 'client_id' not in request.session:
         return redirect('login')
