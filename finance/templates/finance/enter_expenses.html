@@ -13,34 +13,24 @@
             <div class="title-box">МойУчётФинансов</div>
             <button class="empty-box" onclick="alert('Кнопка нажата!')"></button>
         </header>
-
-        <!-- НАЧАЛО ФОРМЫ -->
         <form method="POST" action="{% url 'enter_expenses' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label>Введите тип кошелька</label>
-                <!-- name="wallet_type" связывается с request.POST.get('wallet_type') -->
                 <input type="text" name="wallet_type" class="input-field" required>
             </div>
-
             <div class="form-group">
                 <label>Введите категорию расходов</label>
-                <!-- name="category" связывается с request.POST.get('category') -->
                 <input type="text" name="category" class="input-field" required>
             </div>
 
             <div class="form-group">
                 <label>Введите &nbsp;&nbsp;ваши расходы</label>
-                <!-- name="amount", type="number" чтобы вводили только цифры, step="0.01" для копеек -->
                 <input type="number" step="0.01" name="amount" class="input-field" required>
             </div>
-
             <div class="buttons-container">
                 <button type="reset" class="btn btn-cancel">Отмена</button>
-
-                <!-- type="submit" отправляет данные во views.py -->
                 <button type="submit" class="btn btn-save">Сохранить</button>
-
                 <a href="{% url 'section_finances' %}" class="btn btn-finance" style="text-decoration: none;">Финансы</a>
             </div>
         </form>
