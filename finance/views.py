@@ -63,10 +63,24 @@ def profile(request):
         return redirect('login')
     client = Client.objects.get(id=request.session['client_id'])
     return render(request, 'finance/profile.html', {'client': client})
+
+
 def goals(request):
     if 'client_id' not in request.session:
         return redirect('login')
-    return render(request, 'finance/my_goals.html')
+
+    # Получаем ID текущего клиента
+    client_id = request.session['client_id']
+
+    # Достаем цели только этого клиента (новые сверху)
+    user_goals = Goal.objects.filter(client_id=client_id).order_by('-id')
+
+    # Передаем в шаблон
+    context = {
+        'user_goals': user_goals
+    }
+
+    return render(request, 'finance/my_goals.html', context)
 def enter_exp(request):
     if 'client_id' not in request.session:
         return redirect('login')
