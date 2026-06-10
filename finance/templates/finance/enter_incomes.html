@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ввод данных</title>
+    <link rel="stylesheet" href="{% static 'styles9.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header-box">
+            <h2>МойУчётФинансов</h2>
+        </div>
+        <form method="POST" action="{% url 'enter_incomes' %}" id="financeForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="wallet_type">Введите тип кошелька</label>
+                <input type="text" id="wallet_type" name="wallet_type" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Введите категорию ваших доходов</label>
+                <input type="text" id="category" name="category" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Введите ваши доходы</label>
+                <input type="number" id="amount" name="amount" step="0.01" required>
+            </div>
+            <div class="buttons-container">
+                <button type="button" class="btn btn-cancel" onclick="document.getElementById('financeForm').reset();">Отмена</button>
+                <button type="submit" class="btn btn-save">Сохранить</button>
+                <button type="button" class="btn btn-finance" onclick="window.location.href='{% url 'section_finances' %}'">Финансы</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
