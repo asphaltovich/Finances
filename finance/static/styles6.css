@@ -73,4 +73,52 @@ body {
 }
 .main-btn:hover {
     background-color: #f0f0f0;
+/* --- СТИЛИ ДЛЯ ТАБЛИЦЫ ЦЕЛЕЙ --- */
+.grid-section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    flex: 1; /* Чтобы блок растягивался на всю высоту */
+}
+
+/* Настройки для каждой строки (и заголовков, и данных) */
+.data-row {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.data-row:last-child {
+    border-bottom: none;
+}
+
+/* Строка заголовков */
+.header-row {
+    border-bottom: 2px solid #000;
+    background-color: #f9f9f9;
+}
+
+/* Настройки для ячеек (3 колонки одинаковой ширины) */
+.data-cell {
+    flex: 1; /* Делит пространство на 3 равные части */
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    text-align: center;
+    word-break: break-word; /* Чтобы длинный текст переносился и не ломал таблицу */
+}
+
+.data-cell:last-child {
+    border-right: none;
+}
+
+/* Стили текста заголовков */
+.column-header {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Блок с данными (чтобы можно было скроллить, если целей много) */
+.data-container {
+    flex: 1;
+    overflow-y: auto;
 }
