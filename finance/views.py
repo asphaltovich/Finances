@@ -1,10 +1,8 @@
-from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
+from django.db.models import Sum
 from datetime import datetime
 from .models import Client, Wallet, Expense, Income, Goal
-
-
 def welcome_page(request):
     return render(request, 'finance/welcome.html')
 def register_page(request):
@@ -48,7 +46,6 @@ def login_page(request):
             return redirect('main')
         else:
             return render(request, 'finance/login.html', {'error': 'Неверный пароль!'})
-
     return render(request, 'finance/login.html')
 def logout_user(request):
     request.session.flush()
@@ -90,10 +87,6 @@ def enter_exp(request):
         )
         return redirect('enter_exp')
     return render(request, 'finance/enter_expenses.html')
-def finance_report(request):
-    if 'client_id' not in request.session:
-        return redirect('login')
-    return render(request, 'finance/finance_report.html')
 def enter_inc(request):
     if 'client_id' not in request.session:
         return redirect('login')
@@ -130,3 +123,18 @@ def add_goal(request):
         )
         return redirect('goals')
     return render(request, 'finance/add_goal.html')
+def finance_report(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    client_id = request.session['client_id']
+    expenses = Expense.objects.filter(client_id=client_id).order_by('-id')
+    incomes = Income.objects.filter(client_id=client_id).order_by('-id')
+    total_expense = expenses.aggregate(Sum('amount'))['amount__sum'] or 0
+    total_income = incomes.aggregate(Sum('amount'))['amount__sum'] or 0
+    context = {
+        'expenses': expenses,
+        'incomes': incomes,
+        'total_expense': total_expense,
+        'total_income': total_income,
+    }
+    return render(request, 'finance/finance_report.html', context)
