@@ -1,11 +1,11 @@
+from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from .models import Client
-
 def welcome_page(request):
     return render(request, 'finance/welcome.html')
-def register_view(request):
+def register_page(request):
     if request.method == 'POST':
         full_name = request.POST.get('fullname')
         email = request.POST.get('email')
@@ -13,13 +13,13 @@ def register_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         if Client.objects.filter(username=username).exists():
-            return render(request, 'register.html', {'error': 'Пользователь с таким логином уже существует!'})
+            return render(request, 'finance/register.html', {'error': 'Пользователь с таким логином уже существует!'})
         if Client.objects.filter(email=email).exists():
-            return render(request, 'register.html', {'error': 'Этот Email уже зарегистрирован!'})
+            return render(request, 'finance/register.html', {'error': 'Этот Email уже зарегистрирован!'})
         try:
             birth_date = datetime.strptime(birthdate_str, '%d.%m.%Y').date()
         except ValueError:
-            return render(request, 'register.html', {'error': 'Неверный формат даты. Используйте дд.мм.гггг'})
+            return render(request, 'finance/register.html', {'error': 'Неверный формат даты. Используйте дд.мм.гггг'})
         hashed_password = make_password(password)
         Client.objects.create(
             full_name=full_name,
@@ -29,4 +29,58 @@ def register_view(request):
             password=hashed_password
         )
         return redirect('login')
-    return render(request, 'register.html')
+    return render(request, 'finance/register.html')
+def login_page(request):
+    if 'client_id' in request.session:
+        return redirect('main')
+    if request.method == 'POST':
+        login_data = request.POST.get('login')
+        password_data = request.POST.get('password')
+        try:
+            client = Client.objects.get(username=login_data)
+        except Client.DoesNotExist:
+            return render(request, 'finance/login.html', {'error': 'Пользователь с таким логином не зарегистрирован!'})
+        if check_password(password_data, client.password):
+            request.session['client_id'] = client.id
+            request.session['client_username'] = client.username
+            return redirect('main')
+        else:
+            return render(request, 'finance/login.html', {'error': 'Неверный пароль!'})
+
+    return render(request, 'finance/login.html')
+def logout_user(request):
+    # Очищаем сессию
+    request.session.flush()
+    return redirect('welcome')
+def main_page(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    return render(request, 'finance/main.html')
+
+def section_finances(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    return render(request, 'finance/section_finances.html')
+
+def profile(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+
+    # Можно передать данные клиента в шаблон профиля
+    client = Client.objects.get(id=request.session['client_id'])
+    return render(request, 'finance/profile.html', {'client': client})
+
+def goals(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    return render(request, 'finance/my_goals.html')
+
+def enter_exp(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    return render(request, 'finance/enter_expenses.html')
+
+def finance_report(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    return render(request, 'finance/finance_report.html')
