@@ -9,15 +9,11 @@
 </head>
 <body>
     <div class="container">
-        <!-- Шапка -->
         <div class="header-section">
             <div class="title-box">МойУчётФинансов</div>
             <div class="square-box"></div>
         </div>
-
-        <!-- Таблица с целями -->
         <div class="grid-section">
-            <!-- КОЛОНКА 1: Название -->
             <div class="grid-column">
                 <div class="column-header">Название цели</div>
                 <div class="column-content">
@@ -26,8 +22,6 @@
                     {% endfor %}
                 </div>
             </div>
-
-            <!-- КОЛОНКА 2: Описание -->
             <div class="grid-column">
                 <div class="column-header">Описание цели</div>
                 <div class="column-content">
@@ -36,8 +30,6 @@
                     {% endfor %}
                 </div>
             </div>
-
-            <!-- КОЛОНКА 3: Сумма -->
             <div class="grid-column">
                 <div class="column-header">Сумма</div>
                 <div class="column-content">
@@ -47,8 +39,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Кнопка -->
         <div class="footer-section">
             <a href="{% url 'main' %}" class="main-btn" style="text-decoration: none; color: inherit;">На главную</a>
         </div>
