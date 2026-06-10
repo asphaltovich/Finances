@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import redirect, render
 class Client(models.Model):
     full_name = models.CharField(max_length=255, verbose_name='ФИО')
     email = models.EmailField(unique=True, verbose_name='Email')
@@ -65,3 +66,34 @@ class Income(models.Model):
         verbose_name_plural = 'Доходы'
     def __str__(self):
         return f"Доход: {self.amount} руб. ({self.category}) - {self.client.username}"
+class Goal(models.Model):
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE,
+        related_name='goals',
+        verbose_name='Клиент'
+    )
+    name = models.CharField(max_length=255, verbose_name='Название цели')
+    description = models.TextField(verbose_name='Описание цели', blank=True, null=True)
+    amount = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Сумма')
+    class Meta:
+        verbose_name = 'Цель'
+        verbose_name_plural = 'Цели'
+    def __str__(self):
+        return f"{self.name} - {self.amount} руб. ({self.client.username})"
+def add_goal(request):
+    if 'client_id' not in request.session:
+        return redirect('login')
+    if request.method == 'POST':
+        name_val = request.POST.get('name')
+        desc_val = request.POST.get('description')
+        amount_val = request.POST.get('amount')
+        client = Client.objects.get(id=request.session['client_id'])
+        Goal.objects.create(
+            client=client,
+            name=name_val,
+            description=desc_val,
+            amount=amount_val
+        )
+        return redirect('goals')
+    return render(request, 'finance/add_goal.html')
