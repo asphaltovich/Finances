@@ -23,7 +23,6 @@ class Wallet(models.Model):
         verbose_name_plural = 'Кошельки клиентов'
     def __str__(self):
         return f"{self.name} ({self.client.username})"
-
 class Expense(models.Model):
     client = models.ForeignKey(
         Client,
@@ -31,14 +30,20 @@ class Expense(models.Model):
         related_name='expenses',
         verbose_name='Клиент'
     )
+    wallet = models.ForeignKey(
+        Wallet,
+        on_delete=models.CASCADE,
+        related_name='expenses',
+        verbose_name='Кошелёк',
+        null=True, blank=True
+    )
+    category = models.CharField(max_length=100, verbose_name='Категория расходов', default='Без категории')
     amount = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Сумма расходов')
-
     class Meta:
         verbose_name = 'Расход'
         verbose_name_plural = 'Расходы'
-
     def __str__(self):
-        return f"Расход: {self.amount} руб. ({self.client.username})"
+        return f"Расход: {self.amount} руб. ({self.category}) - {self.client.username}"
 class Income(models.Model):
     client = models.ForeignKey(
         Client,
